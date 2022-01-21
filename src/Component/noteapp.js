@@ -6,9 +6,7 @@ import NotesContext from '../context/notes-context';
 const NoteApp = () =>{
     const [notes, dispatch] = useReducer(notesReducer ,[]);
    // const [notes, setNotes] = useState([] );
-    const [title, setTitle] = useState('');
-    const [body,setBody] = useState('');
-  
+
     useEffect(() => {
       console.log('use Effectshould be called once');
       const notes = JSON.parse(localStorage.getItem('notes')); 
@@ -24,16 +22,6 @@ const NoteApp = () =>{
       localStorage.setItem('notes',json)
     },[notes]);
     
-    const addNote = (e)=>{
-      e.preventDefault()
-      dispatch({
-        type:'ADD_NOTE',
-        title,
-        body
-      })
-      setTitle('');
-      setBody('');
-    }
     return (
       <NotesContext.Provider value={{notes,dispatch}}>
       <h1>Notes</h1>
